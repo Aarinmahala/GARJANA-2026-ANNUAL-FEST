@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GARJANA 2026 – Official Rulebook</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --gold: #FFB300;
+    --deep-navy: #0D1B3E;
+    --cream: #FFF8EE;
+    --maroon: #8B0000;
+    --light-gold: #FFF0C0;
+    --white: #ffffff;
+    --text-dark: #1a1a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep-navy);
+    color: var(--text-dark);
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* DECORATIVE BG */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 10% 20%, rgba(255,107,0,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(255,179,0,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(139,0,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 50px 30px 40px;
+    background: linear-gradient(135deg, #0D1B3E 0%, #1a2f6e 50%, #0D1B3E 100%);
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--maroon), var(--saffron), var(--gold), var(--saffron), var(--maroon));
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--maroon), var(--saffron), var(--gold), var(--saffron), var(--maroon));
+  }
+
+  .fest-name {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--saffron) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .fest-year {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    margin-bottom: 10px;
+  }
+
+  .fest-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: rgba(255,179,0,0.7);
+    letter-spacing: 0.15em;
+    font-style: italic;
+  }
+
+  .theme-badge {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 8px 24px;
+    background: linear-gradient(135deg, var(--saffron), var(--maroon));
+    color: var(--white);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  /* DAY BADGE */
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 50px 0 24px;
+  }
+
+  .day-badge {
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    color: var(--deep-navy);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    padding: 10px 20px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .day-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  .day-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  /* EVENT CARD */
+  .event-card {
+    background: rgba(255, 248, 238, 0.97);
+    border-radius: 3px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    border-left: 5px solid var(--saffron);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,179,0,0.15);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .event-card.hackathon { border-left-color: #7C3AED; }
+  .event-card.cultural  { border-left-color: #059669; }
+  .event-card.poetry    { border-left-color: #DB2777; }
+  .event-card.dance     { border-left-color: #DC2626; }
+  .event-card.openmic   { border-left-color: #2563EB; }
+  .event-card.talent    { border-left-color: #D97706; }
+  .event-card.drama     { border-left-color: #6D28D9; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .event-header {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .event-icon {
+    background: linear-gradient(135deg, var(--saffron), var(--maroon));
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    min-width: 64px;
+  }
+
+  .event-card.hackathon .event-icon { background: linear-gradient(135deg, #7C3AED, #4C1D95); }
+  .event-card.cultural  .event-icon { background: linear-gradient(135deg, #059669, #064E3B); }
+  .event-card.poetry    .event-icon { background: linear-gradient(135deg, #DB2777, #831843); }
+  .event-card.dance     .event-icon { background: linear-gradient(135deg, #DC2626, #7F1D1D); }
+  .event-card.openmic   .event-icon { background: linear-gradient(135deg, #2563EB, #1E3A8A); }
+  .event-card.talent    .event-icon { background: linear-gradient(135deg, #D97706, #92400E); }
+  .event-card.drama     .event-icon { background: linear-gradient(135deg, #6D28D9, #2E1065); }
+
+  .event-title-block {
+    flex: 1;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .event-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+
+  .event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: #555;
+  }
+
+  .meta-pill {
+    background: rgba(255,107,0,0.1);
+    color: var(--saffron);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    border: 1px solid rgba(255,107,0,0.2);
+    white-space: nowrap;
+  }
+
+  .meta-pill.time { background: rgba(13,27,62,0.08); color: var(--deep-navy); border-color: rgba(13,27,62,0.2); }
+
+  /* RULES GRID */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+  }
+
+  .rule-section {
+    padding: 18px 20px;
+    border-right: 1px solid rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .rule-section:last-child { border-right: none; }
+
+  .rule-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .rule-section-title.reg    { color: #7C3AED; }
+  .rule-section-title.stage  { color: var(--saffron); }
+  .rule-section-title.timing { color: #059669; }
+  .rule-section-title.disc   { color: var(--maroon); }
+
+  .rule-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .rule-section-title.reg::before    { background: #7C3AED; }
+  .rule-section-title.stage::before  { background: var(--saffron); }
+  .rule-section-title.timing::before { background: #059669; }
+  .rule-section-title.disc::before   { background: var(--maroon); }
+
+  .rule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .rule-list li {
+    font-size: 0.8rem;
+    color: #333;
+    line-height: 1.6;
+    padding: 3px 0 3px 14px;
+    position: relative;
+    border-bottom: 1px dashed rgba(0,0,0,0.06);
+  }
+
+  .rule-list li:last-child { border-bottom: none; }
+
+  .rule-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    color: var(--saffron);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  /* GENERAL RULES BOX */
+  .general-box {
+    background: linear-gradient(135deg, rgba(255,107,0,0.08), rgba(255,179,0,0.05));
+    border: 1px solid rgba(255,179,0,0.3);
+    border-radius: 3px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+
+  .general-box h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .general-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .gen-item {
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--gold);
+  }
+
+  .gen-item-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--saffron);
+    margin-bottom: 6px;
+  }
+
+  .gen-item p {
+    font-size: 0.8rem;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: rgba(255,179,0,0.5);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    border-top: 1px solid rgba(255,179,0,0.15);
+    margin-top: 40px;
+  }
+
+  /* DIVIDER */
+  .ornamental-divider {
+    text-align: center;
+    margin: 12px 0 30px;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .rules-grid { grid-template-columns: 1fr 1fr; }
+    .event-name { font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="fest-name">GARJANA</div>
+    <div class="fest-year">2026 · ANNUAL FEST</div>
+    <div class="fest-year"> विराट भारत सम्मेलन </div>
+    <div class="fest-subtitle">Singh Garjana – The Varshikotsav</div>
+    <div class="theme-badge">✦ सुरक्षित  .  विकसित  .  समृद्ध भारत ✦</div>
+  </div>
+
+  <!-- GENERAL RULES -->
+  <div class="general-box">
+    <h2>✦ General Rules – All Events</h2>
+    <div class="general-grid">
+      <div class="gen-item">
+        <div class="gen-item-title">🪪 ID Mandatory</div>
+        <p>Valid College ID Card must be carried at all times during the fest.</p>
+      </div>
+      <div class="gen-item">
+        <div class="gen-item-title">⏰ Reporting Time</div>
+        <p>All participants must report at their event venue at least <strong>15 minutes before</strong> the scheduled start time.</p>
+      </div>
+      <div class="gen-item">
+        <div class="gen-item-title">📋 Registration</div>
+        <p>Registration via the official link is mandatory. Spot registrations may not be accepted.</p>
+      </div>
+      <div class="gen-item">
+        <div class="gen-item-title">🤝 Discipline</div>
+        <p>Ragging, misconduct, or disrespecting judges/organizers will lead to immediate disqualification.</p>
+      </div>
+      <div class="gen-item">
+        <div class="gen-item-title">📱 Devices</div>
+        <p>Mobile phones must be on silent mode during all performances and sessions.</p>
+      </div>
+      <div class="gen-item">
+        <div class="gen-item-title">⚖️ Judges' Decision</div>
+        <p>The decision of the judging panel is final and binding in all competitions.</p>
+      </div>
+    </div>
+  </div>
+<div class="day-badge">Day 1 & Day 2</div>
+
+    <div class="day-title"> </div>
+    <div class="fest-year">विराट भारत सम्मेलन</div>
+  <!-- ─────────────── DAY 1 ─────────────── -->
+  <div class="day-header">
+    <div class="day-badge">Day 1</div>
+    <div class="day-title">Inaugural Day</div>
+    <div class="day-line"></div>
+  </div>
+
+  <!-- OPENING CEREMONY -->
+  <div class="event-card">
+    <div class="event-header">
+      <div class="event-icon">🎙️</div>
+      <div class="event-title-block">
+        <div class="event-name">Opening Ceremony </div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕙 10:00 – 11:00 AM · Day 1</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Entry</div>
+        <ul class="rule-list">
+          <li>College ID card mandatory for students</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Be seated by 9:45 AM</li>
+          <li>Late entry strictly restricted once ceremony begins</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Maintain silence during speeches</li>
+          <li>No movement in the hall during inaugural address</li>
+          <li> Dress code required</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOTIVATIONAL TALK -->
+  <div class="event-card cultural">
+    <div class="event-header">
+      <div class="event-icon">💬</div>
+      <div class="event-title-block">
+        <div class="event-name">Motivational Talk / Panel Discussion</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕙 11:00 AM – 12:00 PM · Day 1</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Open attendance for all participants</li>
+          <li>ID card required for entry</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Arrive before 11:00 AM</li>
+          <li>Q&A session, if any, to be conducted only in designated time</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>No interruptions during speaker's talk</li>
+          <li>Raise hand for questions only when invited</li>
+          <li>Respectful conduct with panelists is mandatory</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINI HACKATHON -->
+  <div class="event-card hackathon">
+    <div class="event-header">
+      <div class="event-icon">💻</div>
+      <div class="event-title-block">
+        <div class="event-name">Mini Hackathon (15-min Rounds) & Project Display</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕙 12:00 – 2:00 PM · Day 1</span>
+          <span class="meta-pill">15-min Rounds</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register via the official registration link</li>
+          <li>Valid College ID card mandatory</li>
+          <li>Team size to be fixed as per organizer guidelines</li>
+          <li>Solo participation allowed unless team event is specified</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage / Presentation</div>
+        <ul class="rule-list">
+          <li>Each team must explain their idea & logic clearly before judges</li>
+          <li>A demo video or presentation of the project must be submitted before the deadline</li>
+          <li>Project display table must be set up before the round begins</li>
+          <li>Use of pre-built commercial solutions is not allowed</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Arrive at least <strong>15 minutes before</strong> the event starts</li>
+          <li>Each round is strictly <strong>15 minutes</strong></li>
+          <li>Demo/presentation must be submitted before the timeline ends</li>
+          <li>Overtime presentations will not be evaluated</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>No sharing of solutions between teams</li>
+          <li>Any form of plagiarism leads to disqualification</li>
+          <li>Judges' evaluation is final</li>
+          <li>Maintain decorum at the display area</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- KAVI SAMMELAN -->
+  <div class="event-card poetry">
+    <div class="event-header">
+      <div class="event-icon">📜</div>
+      <div class="event-title-block">
+        <div class="event-name">Kavi Sammelan – Poetry Session</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕕 6:00 – 8:00 PM · Day 1</span>
+          <span class="meta-pill">Open Stage</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Performers must register in advance with their poem title</li>
+          <li> Registr ID required at the time of registration</li>
+          <li>Walk-in entries subject to available slots</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Poetry must be original or with proper credit to the author</li>
+          <li>No objectionable or politically offensive content allowed</li>
+          <li>Props, if any, must be pre-approved by organizers</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>5:45 PM</strong></li>
+          <li>Each performer gets a fixed time slot – strictly follow it</li>
+          <li>Exceeding time limit will result in a bell/warning signal</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Audience must maintain silence during recitation</li>
+          <li>Vulgar or offensive language strictly prohibited</li>
+          <li>Organizers reserve the right to stop any performance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPEN MIC -->
+  <div class="event-card openmic">
+    <div class="event-header">
+      <div class="event-icon">🎤</div>
+      <div class="event-title-block">
+        <div class="event-name">Open Mic – College Students & School Performances</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕗 8:00 – 10:00 PM · Day 1</span>
+          <span class="meta-pill">Any Art Form</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register with name, institution & act type</li>
+          <li>School participants must carry school ID</li>
+          <li>College participants must carry college ID</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Any art form: spoken word, stand-up, singing, rap, etc.</li>
+          <li>No obscene, vulgar or objectionable content</li>
+          <li>Sound/music tracks must be submitted before the session</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>7:45 PM</strong> with sound check</li>
+          <li>Each act limited to designated time slot</li>
+          <li>No extensions – bell will signal overtime</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Respectful behaviour towards all performers</li>
+          <li>Booing or disrupting a performance is grounds for removal</li>
+          <li>Organisers may alter the running order as needed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── DAY 2 ─────────────── -->
+  <div class="day-header">
+    <div class="day-badge">Day 2</div>
+    <div class="day-title">Science & Cultural Events</div>
+    <div class="day-line"></div>
+  </div>
+
+  <!-- SCIENCE FAIR -->
+  <div class="event-card cultural">
+    <div class="event-header">
+      <div class="event-icon">🔬</div>
+      <div class="event-title-block">
+        <div class="event-name">College Visit & Science Fair</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕘 9:00 AM – 2:00 PM · Day 2</span>
+          <span class="meta-pill">Weapon Display & Stalls – Parallel</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Exhibitors must register project in advance</li>
+          <li>College ID compulsory for stall access</li>
+          <li>Visitors must sign the entry register</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Display Rules</div>
+        <ul class="rule-list">
+          <li>Each exhibit must be set up by 8:45 AM</li>
+          <li>All stall materials must be self-sufficient and safe</li>
+          <li>No electrical appliances without prior approval</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Exhibitors report by <strong>8:45 AM</strong></li>
+          <li>No re-entry after closing time</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Do not touch exhibits without permission</li>
+          <li>Keep the stall area clean</li>
+          <li>Organizers not responsible for damage to exhibits</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLO SINGING COMPETITION (Day 2) -->
+  <div class="event-card">
+    <div class="event-header">
+      <div class="event-icon">🎵</div>
+      <div class="event-title-block">
+        <div class="event-name">Solo Singing Competition</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕕 6:00 – 6:50 PM · Day 2</span>
+          <span class="meta-pill">10 Entries</span>
+          <span class="meta-pill">4 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register via official link with song name & language</li>
+          <li>College ID card mandatory</li>
+          <li>Only <strong>10 entries</strong> accepted – first come first serve</li>
+          <li>One entry per participant</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Karaoke/backing track must be submitted before the event</li>
+          <li>No live instruments unless pre-approved</li>
+          <li>Any language/genre permitted; vulgar lyrics not allowed</li>
+          <li>Costumes must be decent and stage-appropriate</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report at venue by <strong>5:45 PM</strong></li>
+          <li>Performance strictly limited to <strong>4 minutes</strong></li>
+          <li>Bell rings at 3:30 min (warning) and 4 min (stop)</li>
+          <li>Late arrival = forfeiture of slot</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>No audience noise or cheering during judging</li>
+          <li>Judges' marks are final</li>
+          <li>Organizers may disqualify for rule violations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- POEM RECITATION – SELF WRITTEN (Day 2) -->
+  <div class="event-card poetry">
+    <div class="event-header">
+      <div class="event-icon">✍️</div>
+      <div class="event-title-block">
+        <div class="event-name">Poem Recitation – Self Written</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕖 6:50 – 7:30 PM · Day 2</span>
+          <span class="meta-pill">10 Entries</span>
+          <span class="meta-pill">3 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register via official link with poem title & language</li>
+          <li>Poem must be <strong>original / self-written</strong></li>
+          <li>Written copy of poem may be required at registration</li>
+          <li>College ID mandatory</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Only self-composed poems allowed – plagiarism = disqualification</li>
+          <li>Any language permitted</li>
+          <li>No props or background music allowed</li>
+          <li>Notes/paper allowed on stage</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>6:35 PM</strong></li>
+          <li>Maximum <strong>3 minutes</strong> per performance</li>
+          <li>Bell at 2:30 min (warning) and 3 min (stop)</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Offensive, political or hate content strictly banned</li>
+          <li>Judged on originality, expression & delivery</li>
+          <li>Judges' decision is final and binding</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP SONG COMPETITION (Day 2) -->
+  <div class="event-card cultural">
+    <div class="event-header">
+      <div class="event-icon">🎶</div>
+      <div class="event-title-block">
+        <div class="event-name">Group Song Competition</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕖 7:30 – 8:30 PM · Day 2</span>
+          <span class="meta-pill">10 Entries</span>
+          <span class="meta-pill">5 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register team via official link</li>
+          <li>Minimum 3, maximum 8 members per group</li>
+          <li>All members must carry College ID</li>
+          <li>Submit song name and backing track before event day</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Backing track/karaoke must be submitted in advance</li>
+          <li>Live instruments welcome if pre-informed</li>
+          <li>Costumes must be coordinated and appropriate</li>
+          <li>No pre-recorded vocals allowed</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Entire group must report by <strong>7:15 PM</strong></li>
+          <li>Performance strictly <strong>5 minutes</strong></li>
+          <li>Setup/instrument arrangement max 2 min before act</li>
+          <li>Missing members = performance cancelled</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Only registered members may perform</li>
+          <li>No last-minute member changes without permission</li>
+          <li>Judges' decision is final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP DANCE COMPETITION (Day 2) -->
+  <div class="event-card dance">
+    <div class="event-header">
+      <div class="event-icon">💃</div>
+      <div class="event-title-block">
+        <div class="event-name">Group Dance Competition</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕗 8:30 – 9:30 PM · Day 2</span>
+          <span class="meta-pill">10 Entries</span>
+          <span class="meta-pill">5 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register team via official link</li>
+          <li>Minimum 5, maximum 15 members per group</li>
+          <li>Submit music track at least 1 day before the event</li>
+          <li>All members: College ID mandatory</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Music track must be in MP3 format, pre-tested</li>
+          <li>Props must be approved by organizers in advance</li>
+          <li>Costumes must be modest and culturally respectful</li>
+          <li>No fire, water, or dangerous props allowed on stage</li>
+          <li>Any dance form permitted</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Full team must report by <strong>8:15 PM</strong></li>
+          <li>Performance time: strictly <strong>5 minutes</strong></li>
+          <li>Setup time: max 2 minutes before the act</li>
+          <li>Performance order is fixed by draw of lots</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Vulgar or item-style content not allowed</li>
+          <li>Judges' marks are final and cannot be disputed</li>
+          <li>Participants not on stage must wait in designated area</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── DAY 3 ─────────────── -->
+  <div class="day-header">
+    <div class="day-badge">Day 3</div>
+    <div class="day-title">Traditional & Cultural Finale – GARJANA 2026</div>
+    <div class="day-line"></div>
+  </div>
+
+  <!-- SOLO DANCE (Day 3) -->
+  <div class="event-card dance">
+    <div class="event-header">
+      <div class="event-icon">🩰</div>
+      <div class="event-title-block">
+        <div class="event-name">Solo Dance</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕔 5:00 – 5:30 PM · Day 3</span>
+          <span class="meta-pill">5 Entries</span>
+          <span class="meta-pill">4 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register via official link – only <strong>5 slots</strong></li>
+          <li>Submit music track 1 day before</li>
+          <li>College ID mandatory</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Any dance style: classical, folk, contemporary, freestyle</li>
+          <li>Costumes must be appropriate and stage-ready</li>
+          <li>No props that could damage the stage</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>4:45 PM</strong></li>
+          <li>Performance: max <strong>4 minutes</strong></li>
+          <li>Strictly no overtime – bell signals cutoff</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Judges' decision final</li>
+          <li>No vulgarity in performance</li>
+          <li>Be ready backstage before your turn</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLO SINGING (Day 3) -->
+  <div class="event-card">
+    <div class="event-header">
+      <div class="event-icon">🎙️</div>
+      <div class="event-title-block">
+        <div class="event-name">Solo Singing</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕔 5:30 – 5:50 PM · Day 3</span>
+          <span class="meta-pill">2 Entries</span>
+          <span class="meta-pill">5 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Only <strong>2 slots</strong> – register early</li>
+          <li>Submit backing track/song name at registration</li>
+          <li>College ID mandatory</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Pre-recorded vocals strictly not allowed</li>
+          <li>Backing track must be submitted in MP3</li>
+          <li>Any language/genre permitted</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>5:15 PM</strong></li>
+          <li>Performance: max <strong>5 minutes</strong></li>
+          <li>No extension of time under any circumstance</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Audience must remain quiet during performance</li>
+          <li>Judges' marks are final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP DANCE (Day 3) -->
+  <div class="event-card dance">
+    <div class="event-header">
+      <div class="event-icon">🕺</div>
+      <div class="event-title-block">
+        <div class="event-name">Group Dance</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕔 5:50 – 6:20 PM · Day 3</span>
+          <span class="meta-pill">4 Entries</span>
+          <span class="meta-pill">~30 Min Total</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Only <strong>4 group slots</strong> available</li>
+          <li>Min 5 – max 15 members per group</li>
+          <li>Music track submission 1 day prior</li>
+          <li>All members: College ID required</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Cultural/traditional theme preferred for Day 3</li>
+          <li>Props to be pre-approved</li>
+          <li>No dangerous materials on stage</li>
+          <li>Costumes: traditional, coordinated & decent</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Entire group reports by <strong>5:30 PM</strong></li>
+          <li>Setup time: 2 min max per group</li>
+          <li>Time per group: equal split within the 30-min block</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>No substitution of members on day of event</li>
+          <li>Judges' decision is final</li>
+          <li>Groups must clear stage immediately after performance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP SINGING (Day 3) -->
+  <div class="event-card cultural">
+    <div class="event-header">
+      <div class="event-icon">🎼</div>
+      <div class="event-title-block">
+        <div class="event-name">Group Singing</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕕 6:20 – 6:40 PM · Day 3</span>
+          <span class="meta-pill">2 Entries</span>
+          <span class="meta-pill">~10 Min Total</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Only <strong>2 group slots</strong></li>
+          <li>Min 3 members, max 8 members per group</li>
+          <li>Submit song name & backing track in advance</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Live singing only – no lip sync or recorded vocals</li>
+          <li>Instruments allowed if declared at registration</li>
+          <li>Traditional/devotional songs preferred for the finale evening</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>6:05 PM</strong></li>
+          <li>Approx. 5 minutes per group</li>
+          <li>Setup time included in the slot</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Only registered members allowed on stage</li>
+          <li>Judges' evaluation is final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIAL TALENT SHOW (Day 3) -->
+  <div class="event-card talent">
+    <div class="event-header">
+      <div class="event-icon">⭐</div>
+      <div class="event-title-block">
+        <div class="event-name">Special Talent Show</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕖 6:40 – 7:00 PM · Day 3</span>
+          <span class="meta-pill">2 Entries</span>
+          <span class="meta-pill">5 Min Each</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Only <strong>2 slots</strong> – describe your talent at registration</li>
+          <li>Unique, creative performances preferred</li>
+          <li>College ID mandatory</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Any talent: magic, juggling, art, mimicry, etc.</li>
+          <li>Props/setup must be declared at registration</li>
+          <li>Organizers must approve any special requirements in advance</li>
+          <li>Hazardous acts are strictly NOT allowed</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Report by <strong>6:25 PM</strong> with all props</li>
+          <li>Max <strong>5 minutes</strong> per act including setup</li>
+          <li>Overtime = immediate cutoff</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Content must be appropriate for all audiences</li>
+          <li>Organizers may stop any act deemed unsafe or offensive</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRAMA (Day 3) -->
+  <div class="event-card drama">
+    <div class="event-header">
+      <div class="event-icon">🎭</div>
+      <div class="event-title-block">
+        <div class="event-name">Drama</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕖 7:00 – 7:40 PM · Day 3</span>
+          <span class="meta-pill">10 Min Performance</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Register team with drama title & brief synopsis</li>
+          <li>List of all cast members required at registration</li>
+          <li>College ID mandatory for all performers</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Script must be original or copyright-free</li>
+          <li>Props must be declared and pre-approved</li>
+          <li>No adult, offensive, or politically divisive content</li>
+          <li>Sound effects to be submitted in advance</li>
+          <li>Costumes must be appropriate and ready before arrival</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>Cast must report by <strong>6:45 PM</strong></li>
+          <li>Drama strictly limited to <strong>10 minutes</strong></li>
+          <li>Stage setup: max 3 minutes before curtain</li>
+          <li>Stage must be cleared within 2 min after performance</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>All cast members must be in position on time</li>
+          <li>No audience interaction unless part of approved script</li>
+          <li>Judges'/organizers' decision is final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURAL ACT (Day 3) -->
+  <div class="event-card cultural">
+    <div class="event-header">
+      <div class="event-icon">🏮</div>
+      <div class="event-title-block">
+        <div class="event-name">Cultural Act</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕖 7:40 – 8:00 PM · Day 3</span>
+          <span class="meta-pill">~20 Min</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Registration</div>
+        <ul class="rule-list">
+          <li>Coordinated by organizing committee</li>
+          <li>Participating members must confirm with coordinator</li>
+          <li>College ID mandatory</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Acts must reflect cultural or traditional themes</li>
+          <li>All props to be set up before the segment</li>
+          <li>Content must be dignified and family-friendly</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>All performers backstage by <strong>7:30 PM</strong></li>
+          <li>Duration: approx. 20 minutes – follow cues</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Follow stage manager's directions at all times</li>
+          <li>No improvisation without prior approval</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIRITUAL PERFORMANCE -->
+  <div class="event-card">
+    <div class="event-header">
+      <div class="event-icon">🙏</div>
+      <div class="event-title-block">
+        <div class="event-name">Spiritual Performance</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕗 8:30 – 8:40 PM · Day 3</span>
+          <span class="meta-pill">~5 Min</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Content must be devotional, peaceful & respectful</li>
+          <li>No disrespect towards any religion or community</li>
+          <li>Coordinated entirely by organizers</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>All performers backstage by <strong>8:20 PM</strong></li>
+          <li>Strictly limited to <strong>5 minutes</strong></li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>Complete silence expected from audience</li>
+          <li>All participants and audience to be respectful</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIZE DISTRIBUTION -->
+  <div class="event-card talent">
+    <div class="event-header">
+      <div class="event-icon">🏆</div>
+      <div class="event-title-block">
+        <div class="event-name">Prize Distribution</div>
+        <div class="event-meta">
+          <span class="meta-pill time">🕗 8:00 – 8:30 PM · Day 3</span>
+          <span class="meta-pill">~30 Min</span>
+          <span class="meta-pill time">Also: 9:30 PM · Day 2</span>
+        </div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-section">
+        <div class="rule-section-title reg">Eligibility</div>
+        <ul class="rule-list">
+          <li>Only registered and competing participants eligible</li>
+          <li>Winners must be present in person to collect prizes</li>
+          <li>College ID required for prize collection</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title stage">Stage Rules</div>
+        <ul class="rule-list">
+          <li>Only winners called by name may come on stage</li>
+          <li>Maintain decorum – no rushing the stage</li>
+          <li>Photography allowed from designated areas only</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title timing">Timing</div>
+        <ul class="rule-list">
+          <li>All participants must be present in the hall before prize distribution starts</li>
+          <li>Absent winners forfeit the right to collect in the session</li>
+        </ul>
+      </div>
+      <div class="rule-section">
+        <div class="rule-section-title disc">Discipline</div>
+        <ul class="rule-list">
+          <li>No arguments regarding results will be entertained</li>
+          <li>Judges' & management's decisions are final</li>
+          <li>Orderly exit after the ceremony</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="ornamental-divider">✦ ॐ ✦</div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    GARJANA 2026 · Singh Garjana – The Varshikotsav · Theme: Panch-Parivartana<br>
+    <span style="opacity:0.6; font-size:0.7rem; margin-top:6px; display:block;">All rules are subject to final approval by the organizing committee.</span>
+  </div>
+
+</div>
+</body>
+</html>
